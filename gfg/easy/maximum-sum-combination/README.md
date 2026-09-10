@@ -35,6 +35,17 @@ Explanation: The top 3 maximum possible sums are : 4 + 6 = 10, 3 + 6 = 9, and 4
 **Submitted:** 2026-09-10T09:08:45.617Z  
 
 ```java
+// Brute Approach -> Generate every combination and add it into list and then sort that list in descending order and return first k elements 
+                      TC->O(n^2 * log n^2) SC-> O(n^2)
+
+//Better Approach -> Use a min heap , generate every pair , add them into minheap if size is lesser than k , if size is greater than k then check if it is greater than 
+                      heap top element then remove heap top element and add this sum to heap
+                      TC->O(n^2 * log K) SC-> O(K)
+
+//Optimal Approach -> Sort both the arrays in descending order then I know the first elements of both array will form the highest pair sum
+                      then other pairs which may form higher sum will be either i+1,j or i,j+1 so put them both in maxheap and extract the maximum one , and also as can 
+                      use only one pair once so use a set whenever use a pair put it into set
+                      TC->O(nlog n) SC-> O(K)
 class Solution {
     public ArrayList<Integer> topKSumPairs(int[] a, int[] b, int k) {
         // code here
